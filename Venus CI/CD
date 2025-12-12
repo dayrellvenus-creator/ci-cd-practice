@@ -1,1 +1,8 @@
-
+name: check if practice file exists
+run:
+if [ -f hello.txt ]; then 
+echo "file exists - pass"
+else
+echo "file missing - fail"
+exit 1 
+fi
