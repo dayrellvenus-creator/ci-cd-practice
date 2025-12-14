@@ -1,0 +1,33 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+    stage('Install') {
+      steps {
+        sh 'npm ci'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh 'npm test'
+      }
+    }
+    stage('Build Docker') {
+      steps {
+        script {
+          // Requires Docker on the agent
+          sh 'docker build -t ci-cd-practice:latest .'
+        }
+      }
+    }
+  }
+  post {
+    always {
+      junit '**/test-results/*.xml' // if you add JUnit reporter
+    }
+  }
+}
