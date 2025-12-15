@@ -1,0 +1,9 @@
+const { add, multiply } = require('../index');
+
+test('adds numbers', () => {
+  expect(add(2, 3)).toBe(5);
+});
+
+test('multiplies numbers', () => {
+  expect(multiply(3, 4)).toBe(12);
+});
